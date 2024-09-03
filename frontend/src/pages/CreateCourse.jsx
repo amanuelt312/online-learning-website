@@ -18,7 +18,7 @@ import { LoadingButton } from "@mui/lab";
 const url = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
 const CreateCourse = () => {
-  //state to handle the changes in text editor
+
   const { courseId } = useParams();
   const [content, setContent] = useState("");
   const [lessonName, setLessonName] = useState("");
