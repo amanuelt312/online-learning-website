@@ -79,7 +79,6 @@ export const Cards = (props) => {
             }}
           >
             {description}
-            {/* {!progress && description} */}
           </Typography>
         </CardContent>
       </CardActionArea>

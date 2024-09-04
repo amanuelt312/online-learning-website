@@ -12,7 +12,6 @@ import { storage } from "../firebase/firebase";
 import { useParams } from "react-router-dom";
 import { Button, TextField, Typography } from "@mui/material";
 const TextEditor = () => {
-  //state to handle the changes in text editor
   const { courseId } = useParams();
   const [content, setContent] = useState("");
   const [lessonName, setLessonName] = useState("");
