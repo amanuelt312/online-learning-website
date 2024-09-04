@@ -3,8 +3,11 @@ import { ThemeProvider } from "@emotion/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { NavBar } from "./components/Navbar";
 
-import { AuthProvider } from "./firebase/AuthContext";
-import CreateCourse from "./pages/CreateCourse";
+import {
+  AuthProvider,
+  getUserIdFromLocalStorage,
+} from "./firebase/AuthContext";
+import AddLesson from "./pages/AddLesson";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Home from "./pages/Home";
@@ -14,8 +17,14 @@ import { AllCourses } from "./pages/AllCourses";
 import { NewCourse } from "./pages/newCourse";
 import TextEditor from "./pages/TextEditor";
 import { Course } from "./pages/Course";
+import { EditCourse } from "./pages/EditCourse";
+import NotFound from "./pages/NotFound";
+const ownerId = import.meta.env.VITE_REACT_APP_OWNER_ID;
 
 const App = () => {
+  const userId = getUserIdFromLocalStorage();
+  console.log(userId);
+  console.log(ownerId);
   return (
     <>
       <BrowserRouter>
@@ -29,24 +38,29 @@ const App = () => {
                 <Route path="/login" element={<Login />}></Route>
                 <Route path="/signUp" element={<SignUp />}></Route>
                 <Route path="/allCourses" element={<AllCourses />}></Route>
+                <Route path="/courses/:courseName" element={<Course />}></Route>
+
                 <Route
-                  path="/addLesson"
-                  element={<AllCourses addLesson={true} />}
+                  path="/edit"
+                  element={<AllCourses edit={true} />}
+                ></Route>
+                <Route
+                  path="/editCourse/:courseId"
+                  element={<EditCourse />}
                 ></Route>
 
-                <Route path="/courses/:courseName" element={<Course />}></Route>
+                <Route
+                  path="/editCourse/:courseId/:lesson"
+                  element={<AddLesson edit={true} />}
+                ></Route>
+
                 <Route path="/newCourse" element={<NewCourse />}></Route>
                 <Route
-                  path="/create/:courseId"
-                  element={<CreateCourse />}
+                  path="/addLesson/:courseId"
+                  element={<AddLesson />}
                 ></Route>
-
-                <Route
-                  path="/generateCourse"
-                  element={<CreateCourse />}
-                ></Route>
-                <Route path="/test" element={<TextEditor />}></Route>
               </Route>
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </ThemeProvider>
         </AuthProvider>

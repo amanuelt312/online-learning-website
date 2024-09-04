@@ -59,8 +59,8 @@ export const NavBar = () => {
               <Link to={"/allCourses"}>
                 <Button style={{ color: "white" }}>Courses</Button>
               </Link>
-              <Link to={"/contact-us"}>
-                <Button style={{ color: "white" }}>Contact Us</Button>
+              <Link to={"#"}>
+                <Button style={{ color: "white" }}>About</Button>
               </Link>
             </Box>
             {/* <IconButton sx={{ marginRight: 2 }}>

@@ -13,7 +13,6 @@ import {
   Typography,
 } from "@mui/material";
 import Slider from "react-slick";
-import RecommendIcon from "@mui/icons-material/Recommend";
 import TranslateIcon from "@mui/icons-material/Translate";
 import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 import ManageSearchIcon from "@mui/icons-material/ManageSearch";
@@ -56,9 +55,9 @@ export const WhyUs = (props) => {
   const [service, setService] = useState([
     {
       id: 1,
-      title: "AI-Powered Learning",
+      title: "Feature 1",
       description:
-        "Experience seamless and intuitive learning with our AI-driven platform.",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, voluptas.",
       img: (
         <RiRobot3Fill
           style={{ height: "100px", width: "100px" }}
@@ -68,16 +67,16 @@ export const WhyUs = (props) => {
     },
     {
       id: 2,
-      title: "Translate with ease",
+      title: "Feature 2",
       description:
-        "Break language barriers - translate each lesson into Amharic for inclusive learning.",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, voluptas.",
       img: <TranslateIcon sx={{ height: 100, width: 100, color: "green" }} />,
     },
     {
       id: 3,
-      title: "Detailed lesson breakdowns",
+      title: "Feature 3",
       description:
-        "Encounter a complex concept? Dive deeper with detailed explanations for every lesson and Paragraph.",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, voluptas.",
       img: (
         <ManageSearchIcon sx={{ height: 100, width: 100, color: "purple" }} />
       ),
@@ -85,30 +84,30 @@ export const WhyUs = (props) => {
 
     {
       id: 4,
-      title: "Instant Q&A",
+      title: "Feature 4",
       description:
-        "Questions? Click 'Ask' for immediate answers. Learning is a conversation!",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, voluptas.",
       img: <QuestionMarkIcon sx={{ height: 100, width: 100, color: "red" }} />,
     },
     {
       id: 5,
-      title: "Progress Tracking",
+      title: "5",
       description:
-        "Monitor your learning journey with detailed progress tracking.",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, voluptas.",
       img: <TimelineIcon sx={{ height: 100, width: 100, color: "orange" }} />,
     },
     {
       id: 6,
-      title: "Personalized Learning Paths",
+      title: "Feature 6",
       description:
-        "Follow personalized learning paths tailored to your goals and interests.",
+        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Itaque, voluptas.",
       img: <AutoAwesomeIcon sx={{ height: 100, width: 100, color: "lime" }} />,
     },
   ]);
 
   return (
     <Box sx={{ my: 0 }}>
-      <Typography variant="h4">The Future of Learning is Here</Typography>
+      <Typography variant="h4">Features</Typography>
 
       {/* <Grid
         container

@@ -22,8 +22,16 @@ import { LoadingButton } from "@mui/lab";
 import { useNavigate } from "react-router-dom";
 import { getUserIdFromLocalStorage } from "../firebase/AuthContext";
 import { storage } from "../firebase/firebase";
+import NotFound from "./NotFound";
 const url = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 export const NewCourse = () => {
+  const navigate = useNavigate();
+
+  const ownerId = import.meta.env.VITE_REACT_APP_OWNER_ID;
+  const userId = getUserIdFromLocalStorage();
+  if (!userId && userId !== ownerId) {
+    return <NotFound />;
+  }
   const [courseName, setCourseName] = useState("");
   const [description, setDescription] = useState("");
   const [ai, setAi] = useState(true);
@@ -33,9 +41,7 @@ export const NewCourse = () => {
   const [length, setLength] = useState();
 
   const [loading, setLoading] = useState(false);
-  const userId = getUserIdFromLocalStorage();
 
-  const navigate = useNavigate();
   const createId = (text) => {
     return text
       .toLocaleLowerCase()
@@ -86,7 +92,7 @@ export const NewCourse = () => {
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            navigate(`/create/${courseId}`);
+            navigate(`/addLesson/${courseId}`);
           })
           .catch((err) => {
             setLoading(false);
@@ -144,7 +150,7 @@ export const NewCourse = () => {
               alignItems: "center",
             }}
           >
-            <Typography variant="h5" style={{ margin: "16px" }}>
+            <Typography variant="h3" style={{ margin: "16px" }}>
               Create Course
             </Typography>
 

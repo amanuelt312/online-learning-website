@@ -57,9 +57,9 @@ export const theme = createTheme({
           marginTop: "15px",
         },
         containedPrimary: {
-          backgroundColor: "#1976d2",
+          backgroundColor: "#24292e",
           "&:hover": {
-            backgroundColor: "#115293",
+            backgroundColor: "#373c40",
           },
         },
         containedSecondary: {
@@ -74,7 +74,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiOutlinedInput-root": {
-            borderRadius: 8, // Custom text field border radius
+            borderRadius: 8,
             backgroundColor: "#ffffff",
           },
         },

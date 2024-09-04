@@ -16,10 +16,14 @@ import { Player } from "@lottiefiles/react-lottie-player";
 
 import lootie from "../assets/animation.json";
 import { getUserIdFromLocalStorage } from "../firebase/AuthContext";
+import { AllCourses } from "./AllCourses";
+const ownerId = import.meta.env.VITE_REACT_APP_OWNER_ID;
 
 const Home = () => {
   console.log(getUserIdFromLocalStorage());
   const isMobile = useMediaQuery("(max-width:600px)");
+  const userId = getUserIdFromLocalStorage();
+
   return (
     <>
       <Container
@@ -108,29 +112,32 @@ const Home = () => {
                           Learn
                         </Button>
                       </Link>
-
-                      <Link to={"/newCourse"}>
-                        <Button
-                          variant="outlined"
-                          sx={{
-                            width: isMobile ? "100%" : "100px",
-                            margin: isMobile ? "10px 0" : "10px",
-                          }}
-                        >
-                          Create
-                        </Button>
-                      </Link>
-                      <Link to={"/addLesson"}>
-                        <Button
-                          variant="outlined"
-                          sx={{
-                            width: isMobile ? "100%" : "100px",
-                            margin: isMobile ? "10px 0" : "10px",
-                          }}
-                        >
-                          Add lesson
-                        </Button>
-                      </Link>
+                      {userId && userId == ownerId && (
+                        <>
+                          <Link to={"/newCourse"}>
+                            <Button
+                              variant="outlined"
+                              sx={{
+                                width: isMobile ? "100%" : "100px",
+                                margin: isMobile ? "10px 0" : "10px",
+                              }}
+                            >
+                              Create
+                            </Button>
+                          </Link>
+                          <Link to={"/edit"}>
+                            <Button
+                              variant="outlined"
+                              sx={{
+                                width: isMobile ? "100%" : "100px",
+                                margin: isMobile ? "10px 0" : "10px",
+                              }}
+                            >
+                              Edit
+                            </Button>
+                          </Link>
+                        </>
+                      )}
                     </Stack>
                   </Stack>
                 </Box>
@@ -144,6 +151,21 @@ const Home = () => {
           </Box>
         </Box>
       </Container>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          my: 5,
+        }}
+      >
+        <Typography variant="h4" sx={{ fontWeight: "bold", my: 3 }}>
+          Courses
+        </Typography>
+
+        <AllCourses />
+      </Box>
     </>
   );
 };
@@ -151,4 +173,5 @@ const Home = () => {
 //TODO private pages
 //TODO quiz
 //TODO Progress, profile,
+//Routers fro the backend
 export default Home;

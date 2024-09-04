@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import {
+  Alert,
   AppBar,
   Box,
   Button,
+  Collapse,
   Divider,
   Drawer,
   Grid,
@@ -28,6 +30,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { getUserIdFromLocalStorage } from "../firebase/AuthContext";
+import { ShowCourse } from "../components/ShowCourse";
 
 export const Course = () => {
   const drawerWidth = 300;
@@ -38,7 +41,9 @@ export const Course = () => {
   const [lesson, setLesson] = useState([]);
   const [selectedList, SetSelectedList] = useState(0);
   const [isDrawerOpen, setDrawerOpen] = useState(false);
-  const [courseProgress, setCourseProgress] = useState();
+
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   const url = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
@@ -72,7 +77,7 @@ export const Course = () => {
 
   const handleListClick = (index) => {
     SetSelectedList(index);
-    console.log(index);
+
     setMobileOpen(false);
   };
 
@@ -87,8 +92,6 @@ export const Course = () => {
       SetSelectedList(selectedList + 1);
     }
   };
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -106,24 +109,25 @@ export const Course = () => {
 
   const drawer = (
     <Box sx={{ overflow: "auto" }}>
-      {lesson.map(({ title }, index) => (
-        <ListItemButton
-          key={index}
-          onClick={() => handleListClick(index)}
-          sx={
-            index === selectedList
-              ? {
-                  backgroundColor: "lightblue",
-                  borderRadius: "13px",
-                }
-              : {}
-          }
-        >
-          <ListItemText
-            primary={title.charAt(0).toUpperCase() + title.slice(1)}
-          />
-        </ListItemButton>
-      ))}
+      {lesson &&
+        lesson.map(({ title }, index) => (
+          <ListItemButton
+            key={index}
+            onClick={() => handleListClick(index)}
+            sx={
+              index === selectedList
+                ? {
+                    backgroundColor: "lightblue",
+                    borderRadius: "13px",
+                  }
+                : {}
+            }
+          >
+            <ListItemText
+              primary={title.charAt(0).toUpperCase() + title.slice(1)}
+            />
+          </ListItemButton>
+        ))}
     </Box>
   );
   return (
@@ -210,18 +214,7 @@ export const Course = () => {
                 Next
               </Button>
             </Stack>
-            {lesson.length > 0 && (
-              <Box>
-                <Typography variant="h5" gutterBottom>
-                  {lesson[selectedList].title}
-                </Typography>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: lesson[selectedList].content,
-                  }}
-                ></div>
-              </Box>
-            )}
+            {lesson.length > 0 && <ShowCourse lesson={lesson[selectedList]} />}
             <Stack direction={"row"} sx={{ justifyContent: "space-between" }}>
               <Button variant="contained" onClick={handlePreviousClick}>
                 Previous

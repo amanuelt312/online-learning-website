@@ -14,10 +14,10 @@ import { Cards } from "../components/Cards";
 
 const url = import.meta.env.VITE_REACT_APP_BACKEND_URL;
 
-export const AllCourses = ({ addLesson = false }) => {
+export const AllCourses = ({ edit = false }) => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log(addLesson);
+  console.log(edit);
   useEffect(() => {
     const readCourses = async () => {
       try {
@@ -66,7 +66,7 @@ export const AllCourses = ({ addLesson = false }) => {
         //   paddingTop: "40px",
         // }}
         >
-          {addLesson && <Typography variant="h3">Select Course</Typography>}
+          {edit && <Typography variant="h3">Select Course</Typography>}
           <Grid2
             sx={{
               display: "flex",
@@ -84,8 +84,8 @@ export const AllCourses = ({ addLesson = false }) => {
                 <Grid2 item xl={2} lg={2} md={3} sm={4} xs={5} key={course.id}>
                   <Link
                     to={
-                      addLesson
-                        ? `/create/${course.courseId}`
+                      edit
+                        ? `/editCourse/${course.courseId}`
                         : `/courses/${course.courseId}`
                     }
                     style={{ textDecoration: "none" }}
